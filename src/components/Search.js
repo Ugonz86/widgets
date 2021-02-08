@@ -3,9 +3,9 @@ import axios from 'axios';
 
 const Search = () => {
     const [term, setTerm] = useState('programming');
-    const [results, setResults] = useState('');
+    const [results, setResults] = useState([]);
 
-    console.log(results);
+    // console.log(results);
 
     useEffect(() => {
         const search = async () => {
@@ -18,16 +18,32 @@ const Search = () => {
                     srsearch: term,
                 },
             });
-            setResults(data);
+
+            setResults(data.query.search);
         };
 
-        if (term) {
-            search();
-        }
+        //if term is not set to a default value, use this below
+        // if (term) {
+        //     search();
+        // }
+        search();
     }, [term]);
 
+    const renderedResults = results.map((result) => {
+        return (
+            <div key={result.pageid} className="item">
+                <div className="content">
+                    <div className="header">
+                        {result.title}
+                    </div>
+                    {result.snippet}
+                </div>
+            </div>
+        );
+    });
+
     return (
-        <div className="">
+        <div>
             <div className="ui form">
                 <div className="field">
                     <label>Enter Search Term</label>
@@ -37,6 +53,9 @@ const Search = () => {
                         className="input"
                     />
                 </div>
+            </div>
+            <div className="ui celled list">
+                {renderedResults}
             </div>
         </div>
     );
