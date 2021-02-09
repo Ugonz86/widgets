@@ -39,9 +39,15 @@ const Convert = ({ language, text }) => {
     }, [language, debouncedText]);
 
     return (
-        <div>
-            <h1 className="ui header">{translated}</h1>
-        </div>
+        debouncedText ?
+            <div>
+                <h1 className="ui header">{translated}</h1>
+            </div>
+            :
+            <div>
+                <h1 className="ui header">There is an issue with the API. Please try again later.</h1>
+            </div>
+
     );
 };
 
