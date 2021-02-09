@@ -14,12 +14,20 @@ const options = [
     {
         label: 'Hindi',
         value: 'hi'
+    },
+    {
+        label: 'Spanish',
+        value: 'es'
+    },
+    {
+        label: 'Japanese',
+        value: 'ja'
     }
 ];
 
 const Translate = () => {
     const [language, setLanguage] = useState(options[0]);
-    const [text, setText] = useState('');
+    const [text, setText] = useState('programming');
 
     return (
         <div>
